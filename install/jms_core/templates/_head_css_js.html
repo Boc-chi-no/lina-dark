@@ -1,0 +1,72 @@
+{% load static %}
+
+<!-- css file -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/toastr/toastr.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/sweetalert/sweetalert.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/vaildator/jquery.validator.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+
+<!-- scripts -->
+<script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+<script src="{% static 'js/plugins/sweetalert/sweetalert.min.js' %}"></script>
+<script src="{% url 'javascript-catalog' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<style>
+    :root {
+        --primary-color: #1ab394;
+    }
+    body {
+        background-color: #293030 !important;
+    }
+    .ibox-content {
+        background-color: #242525 !important;
+        border-color: #333333 !important;
+    }
+
+    .left-form-box {
+        background-color: #242525 !important;
+        border-right: 1px solid #333 !important;
+    }
+
+    .right-image-box {
+        background-color: #242525 !important;
+    }
+
+
+    .right-image {
+        filter: invert(100%) sepia(0%) saturate(45%) hue-rotate(180deg) brightness(1.0) !important;
+        mix-blend-mode: exclusion !important;
+    }
+
+    .contact-form .form-control,
+    .form-control,
+    .single-line {
+        color: #f5f5f5 !important;
+        background-color: #242525 !important;
+    }
+
+
+    hr {
+        border-top: 1px solid #333 !important;
+    }
+
+
+    .dropdown-menu {
+        background-color: #2a2929 !important;
+    }
+
+    .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+        color: #bcbcbc !important;
+        background-color: #676a6c !important;
+    }
+</style>
+
+<script>
+  const themeInfo = {{ INTERFACE.theme_info | safe }};
+  if (themeInfo && themeInfo.colors && themeInfo.colors['--color-primary']) {
+      document.documentElement.style.setProperty('--primary-color', themeInfo.colors['--color-primary']);
+  }
+</script>

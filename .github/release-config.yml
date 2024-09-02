@@ -1,0 +1,12 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+template: |
+  ## LinaDark v$RESOLVED_VERSION
+
+  黑暗模式已适配 v$RESOLVED_VERSION，安装命令如下：
+
+  ```bash
+  cd /opt
+  wget https://github.com/Boc-chi-no/lina-dark/releases/download/v$RESOLVED_VERSION/lina-dark-v$RESOLVED_VERSION.tar.gz
+  mkdir lina-dark-v$RESOLVED_VERSION && tar -xzf lina-dark-v$RESOLVED_VERSION.tar.gz -C lina-dark-v$RESOLVED_VERSION && cd lina-dark-v$RESOLVED_VERSION/install
+  chmod +x ./setup.sh && ./setup.sh install

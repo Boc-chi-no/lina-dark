@@ -1,0 +1,131 @@
+@import "./variables";
+
+#app {
+  .main-container {
+    position: relative;
+    top: $headerHeight;
+    min-height: 100%;
+    height: calc(100vh - #{$headerHeight});
+    transition: margin-left .28s;
+    margin-left: $sideBarWidth;
+  }
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    background-color: $menuBg;
+    height: 100%;
+    position: fixed;
+    font-size: 0;
+    top: $headerHeight;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+    // reset element-ui css
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+    }
+
+    .el-scrollbar__bar.is-vertical {
+      right: 0;
+    }
+
+    .el-scrollbar {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    &.has-logo {
+      .el-scrollbar {
+        margin-top: 5px;
+        height: calc(100% - #{$headerHeight} - 50px - 42px - 5px); // header-height, view-header, footer-height + bolder, margin-top
+      }
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    a {
+      //display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .hideSidebar {
+    .sidebar-container {
+      width: 54px !important;
+    }
+
+    .main-container {
+      margin-left: 54px;
+    }
+
+    .submenu-title-noDropdown {
+      padding: 0 !important;
+      position: relative;
+
+    }
+
+    .el-submenu-sidebar {
+      overflow: hidden;
+
+      & > .el-submenu__title {
+
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+
+    .el-menu--collapse {
+      .el-submenu-sidebar {
+        & > .el-submenu__title {
+          & > span {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  // mobile responsive
+  .mobile {
+    .main-container {
+      margin-left: 0;
+    }
+
+    .sidebar-container {
+      transition: transform .28s;
+      width: $sideBarWidth !important;
+    }
+
+    &.hideSidebar {
+      .sidebar-container {
+        pointer-events: none;
+        transition-duration: 0.3s;
+        transform: translate3d(-$sideBarWidth, 0, 0);
+      }
+    }
+  }
+
+  .withoutAnimation {
+    .main-container,
+    .sidebar-container {
+      transition: none;
+    }
+  }
+}
+

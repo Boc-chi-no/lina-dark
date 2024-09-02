@@ -1,0 +1,144 @@
+@import "./variables";
+
+$icon-width: 1.1em;
+$single-menu-height: 38px;
+
+@mixin only_active {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--menu-text-active);
+  }
+}
+
+@mixin collapse-active {
+  background-color: #e6e6e6;
+
+  &:before {
+    width: 0
+  }
+}
+
+.el-menu {
+  border-right: none !important;
+  background-color: inherit !important;
+
+  .svg-icon, .el-icon, .fa {
+    width: $icon-width !important;
+    height: $icon-width !important;
+    margin-right: 10px;
+  }
+
+  .el-submenu .el-menu-item {
+    height: $single-menu-height;
+    line-height: $single-menu-height;
+  }
+
+  .el-submenu__title {
+    display: flex;
+    align-items: center;
+    height: $single-menu-height;
+    line-height: $single-menu-height;
+  }
+
+  // 通用 item 样式
+  .el-menu-item {
+    display: flex;
+    align-items: center;
+    height: $single-menu-height;
+    color: var(--color-text-primary);
+    letter-spacing: 0.02em;
+    font-size: 12px;
+    min-width: 200px;
+
+    &.is-active {
+      background-color: var(--menu-hover);
+      @include only_active;
+
+      span {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .group-title {
+    color: var(--color-text-secondary);
+    // 分组的 title 样式
+    & > span {
+      display: block;
+      padding: 10px 0 2px 20px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 25px;
+      letter-spacing: .07em;
+    }
+
+    .nest-menu {
+      //display: flex;
+      cursor: pointer;
+
+      // 存在三级子菜单
+      .level1-menu {
+        &.el-submenu.is-opened {
+          border-top: solid 1px var(--color-border);
+        }
+
+        &.el-submenu.is-active {
+          .el-submenu__title {
+            color: var(--color-primary);
+          }
+
+          .el-submenu__title, li {
+            @include only_active
+          }
+        }
+
+        .el-menu--inline .nest-menu .el-menu-item {
+          span {
+            &::before {
+              content: '•'; /* 使用圆点符号 */
+              font-size: 15px;
+              position: absolute; /* 绝对定位伪元素 */
+              left: 25px; /* 调整伪元素位置 */
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 折叠起来的样式
+  &.el-menu--collapse {
+    // 覆盖默认 64px 宽度
+    width: 55px;
+
+    .level1-menu {
+      height: $single-menu-height;
+      line-height: $single-menu-height;
+      display: inline-block;
+
+    }
+
+    .group-title {
+      & > span {
+        display: none;
+      }
+
+      .el-divider.el-divider--horizontal {
+        margin: 12px 0 !important;
+      }
+
+      .level1-menu {
+        min-width: 55px;
+      }
+
+      .nest-menu .level2-menu {
+        line-height: $single-menu-height;
+      }
+    }
+  }
+}
