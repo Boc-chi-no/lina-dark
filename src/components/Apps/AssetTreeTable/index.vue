@@ -176,12 +176,12 @@ export default {
         setParam('node_id', '')
         setParam('asset_id', assetId)
       } else if (treeNode.meta.type === 'category') {
-        url = setUrlParam(url, 'category', treeNode.meta.category)
+        setParam('category', treeNode.meta.category)
       } else if (treeNode.meta.type === 'type') {
         setParam('category', treeNode.meta.category)
         setParam('type', treeNode.meta._type)
       } else if (treeNode.meta.type === 'platform') {
-        url = setUrlParam(url, 'platform', treeNode.id)
+        setParam('platform', treeNode.id)
       }
       setTimeout(() => {
         const query = this.setTreeUrlQuery()

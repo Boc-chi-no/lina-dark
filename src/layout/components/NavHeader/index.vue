@@ -215,7 +215,7 @@ export default {
           }
 
           .el-badge__content--primary {
-            background-color: #242525;
+            background-color: #cddfdf;
           }
 
           .el-badge__content {

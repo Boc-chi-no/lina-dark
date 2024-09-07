@@ -52,7 +52,6 @@ export default {
         columnsMeta: {
           name: {
             formatterArgs: {
-              can: vm.$hasPerm('assets.view_asset'),
               getRoute: ({ row }) => {
                 return {
                   name: 'AppletHostDetail',

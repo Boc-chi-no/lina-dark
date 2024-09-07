@@ -298,7 +298,7 @@ export default {
   border-radius: 2px;
 }
 
-.workspace-tab{
+.workspace-tab {
   ::v-deep .el-tabs__header {
     margin: 0 0 15px 30px !important;
   }

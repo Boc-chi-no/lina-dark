@@ -165,7 +165,6 @@ button, input, optgroup, select, textarea {
 
 .el-dialog__body {
   padding-top: 10px;
-  color: #ced0d3;
 }
 
 .help-block {
@@ -585,5 +584,12 @@ li.rmenu i.fa {
 
   &:hover, &:focus {
     color: var(--color-link);
+  }
+}
+
+.el-table__row {
+  ::-webkit-scrollbar {
+    width: 6px; /* 设置垂直滚动条的宽度 */
+    height: 6px; /* 设置水平滚动条的高度 */
   }
 }

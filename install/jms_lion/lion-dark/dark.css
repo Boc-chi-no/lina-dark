@@ -1,0 +1,76 @@
+html {
+    --el-menu-bg-color: #1D1F26 !important;
+    --el-menu-text-color: #ffffff !important;
+    --el-menu-org-bg-color: #24272D !important;
+    --el-menu-select-bg-color: #2F3238 !important;
+    --el-menu-select-hover-bg-color: #41464D !important;
+    --el-assets-bg-color: #1D1F26 !important;
+    --el-assets-fold-item-bg-color: #24272D !important;
+    --el-assets-extend-bg-color: #1D1F26 !important;
+    --el-assets-border-bottom-color: #1f1b1b !important;
+    --el-assets-border-right-color: #1f1b1b !important;
+    --el-assets-icon-color: #CCCCCC !important;
+    --el-scroll-bar-thumb-bg-color: #3B3F45 !important;
+    --el-scroll-bar-track-bg-color: #2A2D32 !important;
+    --el-rMenu-bg-color: #2F3238 !important;
+    --el-rMenu-hover-bg-color: #41464D !important;
+    --el-main-bg-color: #141618 !important;
+    --el-main-text-color: #f0f0f1 !important;
+    --el-main-crucial-text-color: #7494f3 !important;
+    --el-main-tab-item-disconnected-bg-color: #555B60 !important;
+    --el-header-nav-bg-color: #303237 !important;
+    --el-header-nav-text-color: #EFEFF0 !important;
+    --el-header-nav-select-bg-color: #2F3238 !important;
+    --el-header-tab-bg-color: #41464D !important;
+    --el-header-nav-select-hover-bg-color: #41464D !important;
+    --el-header-tab-item-bg-color: #24272D !important;
+    --el-header-tab-icon-color: #ffffff !important;
+    --el-header-dropdown-disable-text-color: #606266 !important;
+    --el-border-color-x: #40454A !important;
+    --el-border-color-y: #202328 !important;
+    --el-icon-hover-color: #d6cbcb !important;
+}
+body,html {
+    background-color: rgb(29, 31, 38) !important;
+    color: rgb(178, 171, 158) !important;
+}
+
+.el-loading-mask {
+    background: rgb(20, 22, 24) !important;
+}
+
+.xterm-viewport {
+    background: rgb(20, 22, 24) !important;
+}
+
+.el-dialog {
+    background: rgb(29, 31, 38) !important;
+    color: #fff !important;
+}
+.el-input__inner {
+    background-color: #dfe2ea !important;
+    color: #000000 !important;
+}
+.el-dialog__title {
+    color: #f0f0f1 !important;
+}
+
+.el-button {
+    color: #ffffff !important;
+}
+
+.el-button--default {
+    background: #1f2b43c9 !important;
+    color: #ffffff !important;
+}
+
+.el-button--default:hover {
+    background: #c5d0db !important;
+}
+
+.el-button--default:focus, .el-button--default:hover {
+     color: #409eff !important;
+     border-color: #c6e2ff !important;
+     background-color: #ecf5ff !important;
+ }
+

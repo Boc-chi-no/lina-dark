@@ -120,11 +120,21 @@ export default {
               autoComplete: true,
               query: (query, cb) => {
                 const { hosts, nodes } = this.getSelectedNodesAndHosts()
+
+                if (hosts.length === 0) {
+                  this.$message.warning(`${this.$t('RequiredAssetOrNode')}`)
+                  return cb([])
+                }
+
                 this.$axios.post('/api/v1/ops/username-hints/', {
                   nodes: nodes,
                   assets: hosts,
                   query: query
                 }).then(data => {
+                  if (Array.isArray(data) && data.length === 0) {
+                    this.$message.info(`${this.$t('NoAccountFound')}`)
+                    return cb([])
+                  }
                   const ns = data.map(item => {
                     return { value: item.username }
                   })
@@ -470,9 +480,9 @@ $container-bg-color: #f7f7f7;
   flex-direction: column;
 
   .xterm-container {
+    margin-left: 30px;
     height: calc(100vh - 549px);
     min-height: 255px;
-    margin-left: 30px;
     border: 1px solid var(--color-border);
     border-radius: 5px;
     background-color: $container-bg-color;

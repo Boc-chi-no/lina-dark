@@ -1,5 +1,5 @@
 {
-  "name": "Lina",
+  "name": "lina",
   "version": "v4.0.0",
   "description": "JumpServer Web UI",
   "author": "JumpServer Team <support@fit2cloud.com>",
@@ -30,6 +30,7 @@
     "@ztree/ztree_v3": "3.5.44",
     "axios": "0.28.0",
     "axios-retry": "^3.1.9",
+    "caniuse-lite": "^1.0.30001642",
     "cron-parser": "^4.0.0",
     "crypto-js": "^4.1.1",
     "css-color-function": "^1.3.3",

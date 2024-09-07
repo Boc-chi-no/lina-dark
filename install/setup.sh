@@ -11,7 +11,7 @@ install() {
     jmsctl stop
     mkdir -p "$tmp_dir"
 
-    if [ ! -d "jms_web" ] || [ ! -f "lina-dark.tar.gz" ] || [ ! -d "jms_core" ]; then
+    if [ ! -f "lina-dark.tar.gz" ] || [ ! -d "jms_web" ] || [ ! -d "jms_core" ] || [ ! -d "jms_koko" ]; then
         echo "检测到安装包不完整~"
         echo "安装已终止~"
         exit 1
@@ -25,6 +25,14 @@ install() {
         docker tag "jumpserver/core:$tag" "jumpserver/core:$tag-light"
         docker rmi "jumpserver/core:$tag"
     fi
+    if ! docker image inspect "jumpserver/lion:$tag-light" > /dev/null 2>&1; then
+        docker tag "jumpserver/lion:$tag" "jumpserver/lion:$tag-light"
+        docker rmi "jumpserver/lion:$tag"
+    fi
+#    if ! docker image inspect "jumpserver/koko:$tag-light" > /dev/null 2>&1; then
+#        docker tag "jumpserver/koko:$tag" "jumpserver/koko:$tag-light"
+#        docker rmi "jumpserver/koko:$tag"
+#    fi
 
     if ! docker image inspect "jumpserver/web:$tag-dark" > /dev/null 2>&1; then
         cp -r "jms_web" "$tmp_dir/"
@@ -37,10 +45,30 @@ install() {
         sed -i "s/dark-tag/$tag-light/g" "$tmp_dir/jms_core/Dockerfile"
         docker build -t "jumpserver/core:$tag-dark" "$tmp_dir/jms_core"
     fi
+    if ! docker image inspect "jumpserver/lion:$tag-dark" > /dev/null 2>&1; then
+        cp -r "jms_lion" "$tmp_dir/"
+        sed -i "s/dark-tag/$tag-light/g" "$tmp_dir/jms_lion/Dockerfile"
+        docker build -t "jumpserver/lion:$tag-dark" "$tmp_dir/jms_lion"
+    fi
+    if ! docker image inspect "jumpserver/koko:$tag-dark" > /dev/null 2>&1; then
+        cp -r "jms_koko" "$tmp_dir/"
+#        chmod +x "$tmp_dir/jms_koko/koko"
+#        sed -i "s/dark-tag/$tag-light/g" "$tmp_dir/jms_koko/Dockerfile"
+#        docker build -t "jumpserver/koko:$tag-dark" "$tmp_dir/jms_koko"
+    fi
 
-
-    docker tag "jumpserver/web:$tag-dark" "jumpserver/web:$tag"
-    docker tag "jumpserver/core:$tag-dark" "jumpserver/core:$tag"
+    if docker image inspect "jumpserver/web:$tag-dark" > /dev/null 2>&1; then
+        docker tag "jumpserver/web:$tag-dark" "jumpserver/web:$tag"
+    fi
+    if docker image inspect "jumpserver/web:$tag-dark" > /dev/null 2>&1; then
+        docker tag "jumpserver/core:$tag-dark" "jumpserver/core:$tag"
+    fi
+    if docker image inspect "jumpserver/lion:$tag-dark" > /dev/null 2>&1; then
+        docker tag "jumpserver/lion:$tag-dark" "jumpserver/lion:$tag"
+    fi
+    if docker image inspect "jumpserver/koko:$tag-dark" > /dev/null 2>&1; then
+        docker tag "jumpserver/koko:$tag-dark" "jumpserver/koko:$tag"
+    fi
 
     jmsctl start
     docker images -f "dangling=true" -q | xargs -r docker rmi
@@ -63,7 +91,12 @@ uninstall() {
         docker rmi "jumpserver/core:$tag-light"
         docker rmi "jumpserver/core:$tag-dark"
     fi
-
+    if docker image inspect "jumpserver/koko:$tag-light" > /dev/null 2>&1; then
+        docker rmi "jumpserver/koko:$tag"
+        docker tag "jumpserver/koko:$tag-light" "jumpserver/koko:$tag"
+        docker rmi "jumpserver/koko:$tag-light"
+        docker rmi "jumpserver/koko:$tag-dark"
+    fi
     jmsctl start
     docker images -f "dangling=true" -q | xargs -r docker rmi
 }
